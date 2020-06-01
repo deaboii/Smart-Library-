@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhoneActivity">
+
+    <EditText
+        android:id="@+id/phone_no_input"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/input_design"
+        android:hint="Enter phone Number"
+        android:textAlignment="center"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:drawableStart="@drawable/mobiles"
+        android:textStyle="bold"
+        >
+
+    </EditText>
+    <EditText
+        android:id="@+id/verifiaction_input"
+        android:layout_below="@+id/phone_no_input"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/input_design"
+        android:hint="Enter Verification code"
+        android:textAlignment="center"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:drawableStart="@drawable/verification"
+        android:textStyle="bold"
+        android:visibility="invisible"
+
+        >
+
+    </EditText>
+    <Button
+        android:id="@+id/send_verification_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/verifiaction_input"
+        android:text="send verification code"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        >
+
+    </Button>
+    <Button
+        android:id="@+id/verfycode_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/send_verification_code"
+        android:text="Verify"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
+        >
+
+    </Button>
+
+</RelativeLayout>

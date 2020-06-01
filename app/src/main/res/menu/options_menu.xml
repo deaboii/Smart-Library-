@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/update_books"
+            android:title="Update Books"
+            app:showAsAction="never"
+            >
+        </item>
+        <item
+            android:id="@+id/assign_books"
+            android:title="Assign Books"
+            app:showAsAction="never"
+            >
+        </item> <item
+    android:id="@+id/controls"
+    android:title="Controls"
+    app:showAsAction="never"
+    >
+</item> <item
+    android:id="@+id/logout_menu_btn"
+    android:title="Logout"
+    app:showAsAction="never"
+    >
+</item>
+
+</menu>

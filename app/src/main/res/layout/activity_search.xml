@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+<RelativeLayout
+    android:id="@+id/search_bar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentTop="true"
+    android:background="@color/colorPrimary"
+    android:layout_centerHorizontal="true">
+
+    <EditText
+        android:id="@+id/search_book_name"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:hint="Search Books..."
+        android:textColorHint="@android:color/black"
+        android:textSize="20sp"
+        android:background="@android:color/white"
+        android:padding="9dp"
+        android:layout_marginStart="3dp"
+        android:layout_centerVertical="true"
+
+        >
+    </EditText>
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/search_book_name"
+        android:text="Search"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:padding="9dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+
+        >
+    </Button>
+
+</RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_bar"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</RelativeLayout>

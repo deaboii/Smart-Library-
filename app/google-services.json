@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "460872312043",
+    "firebase_url": "https://smart-lib-3ffc0.firebaseio.com",
+    "project_id": "smart-lib-3ffc0",
+    "storage_bucket": "smart-lib-3ffc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460872312043:android:076dbd4a9826bf40724aae",
+        "android_client_info": {
+          "package_name": "com.deeaboi.smartlib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460872312043-gf8d352nuerp5vc3egj0ipooe6ka0i9n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deeaboi.smartlib",
+            "certificate_hash": "5eb2eb7aabf8e712458f8c1402cd9bc9083a2751"
+          }
+        },
+        {
+          "client_id": "460872312043-ao4oaemljm2ccsp8tq1sv378kq2daru9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxcO6ZaEDud0IzStNacZhMRNiJsuOujF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460872312043-ao4oaemljm2ccsp8tq1sv378kq2daru9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460872312043:android:4c4d0e6ba8bc4927724aae",
+        "android_client_info": {
+          "package_name": "com.deeaboi.smartlib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460872312043-r8qnjn37c7oinjra8f2s802cg17cnkn7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deeaboi.smartlib",
+            "certificate_hash": "5eb2eb7aabf8e712458f8c1402cd9bc9083a2751"
+          }
+        },
+        {
+          "client_id": "460872312043-ie68hero2dsg4hi4uaqen3r1e2n9bldn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deeaboi.smartlib",
+            "certificate_hash": "4524a593f97b0decd37edf763d872302a7dfb3be"
+          }
+        },
+        {
+          "client_id": "460872312043-ao4oaemljm2ccsp8tq1sv378kq2daru9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxcO6ZaEDud0IzStNacZhMRNiJsuOujF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460872312043-ao4oaemljm2ccsp8tq1sv378kq2daru9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

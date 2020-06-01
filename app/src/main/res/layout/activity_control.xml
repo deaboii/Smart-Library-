@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ControlActivity">
+
+    <ImageView
+        android:id="@+id/product_Book_image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:src="@drawable/admin_settings_male"
+        />
+
+    <EditText
+        android:id="@+id/rollnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_Book_image"
+        android:hint="Enter Roll Number..."
+        android:textAlignment="center"
+        android:background="@drawable/input_design"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        android:padding="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="4dp"
+        android:inputType="number"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/Issued_Books_chk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:text="Issue Book"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/rollnumber"
+
+        />
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/Refrence_Books_chk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:text="Refrence Book"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="17dp"
+        android:layout_below="@+id/Issued_Books_chk"
+
+
+        />
+
+
+
+    <Button
+        android:id="@+id/managebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Refrence_Books_chk"
+        android:background="@drawable/buttons"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:text="Manage"
+        android:layout_marginTop="15dp"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:layout_marginBottom="15dp"
+
+        />
+
+</RelativeLayout>
