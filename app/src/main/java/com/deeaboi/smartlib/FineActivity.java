@@ -35,14 +35,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class FineActivity extends AppCompatActivity
 {
     private AdView mAdView;
     Integer fine, fineref,totalfine= 0,totalfineref=0 ;
-
-
-    private ImageView fineicon;
     private TextView totalFines;
     private Button payfinebtn;
     public Integer subtotalfine;
@@ -54,7 +52,6 @@ public class FineActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fine);
 
-        fineicon=(ImageView)findViewById(R.id.rupeeicon);
         totalFines=(TextView)findViewById(R.id.Totalfineview);
         payfinebtn=(Button)findViewById(R.id.payfinebtn);
 
@@ -71,9 +68,6 @@ public class FineActivity extends AppCompatActivity
                 payUsingUpi();
             }
         });
-
-
-
 
 
 
@@ -138,7 +132,8 @@ public class FineActivity extends AppCompatActivity
     private void FineCalculator()
     {
         DatabaseReference rootref= FirebaseDatabase.getInstance().getReference();
-        DatabaseReference fineRef=rootref.child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Issue");
+//        DatabaseReference fineRef=rootref.child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Issue");
+        DatabaseReference fineRef=rootref.child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Issue");
 
         ValueEventListener valueEventListener =new ValueEventListener()
         {
@@ -205,7 +200,9 @@ public class FineActivity extends AppCompatActivity
     private void fineRefCalculator()
     {
         DatabaseReference rootrefs= FirebaseDatabase.getInstance().getReference();
-        DatabaseReference fineRefs=rootrefs.child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Refrence");
+        //DatabaseReference fineRefs=rootrefs.child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Refrence");
+
+        DatabaseReference fineRefs=rootrefs.child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Refrence");
 
         ValueEventListener valueEventListeners =new ValueEventListener()
         {
@@ -228,6 +225,10 @@ public class FineActivity extends AppCompatActivity
                     saveCurrentDate = currentDate.format(callForDate.getTime());
 
                     String dateAfterString = saveCurrentDate.toString();
+
+
+
+
                     String dateBeforeString =date.toString();
 
                     LocalDate dateBefore = LocalDate.parse(dateBeforeString);
@@ -248,6 +249,9 @@ public class FineActivity extends AppCompatActivity
                     totalfineref=totalfineref+fineref;
 
 
+
+
+
                 }
 
                // totalFines.setText(totalfine.toString());
@@ -257,6 +261,13 @@ public class FineActivity extends AppCompatActivity
                    subtotalfine=totalfine+totalfineref;
 
                 totalFines.setText(subtotalfine.toString());
+
+                HashMap<String, Object> userDataMap = new HashMap<>();
+                userDataMap.put("fine",subtotalfine.toString());
+                final DatabaseReference RootRef;
+                RootRef = FirebaseDatabase.getInstance().getReference();
+                RootRef.child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("Student").child(Prevalent.CurrentOnlineUser.getPhone()).updateChildren(userDataMap);
+
 
             }
 

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.deeaboi.smartlib.Model.Teacher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +26,8 @@ public class NewPasswordActivity extends AppCompatActivity
 {
     private EditText newPassword,confirmPassword;
     private Button changePassword;
-    private String PhoneNumber;
+    private String PhoneNumber,type="",key="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +36,8 @@ public class NewPasswordActivity extends AppCompatActivity
         setContentView(R.layout.activity_new_password);
 
          PhoneNumber=getIntent().getStringExtra("phonenumber");
+         type= getIntent().getStringExtra("type");
+         key=getIntent().getStringExtra("key");
 
         newPassword=(EditText)findViewById(R.id.new_password);
         confirmPassword=(EditText)findViewById(R.id.confirm_password);
@@ -86,51 +90,160 @@ public class NewPasswordActivity extends AppCompatActivity
 
     private void updatepassword(final String newpasskey)
     {
-        final DatabaseReference PassRef;
-        PassRef = FirebaseDatabase.getInstance().getReference();
-        PassRef.addListenerForSingleValueEvent(new ValueEventListener()
+
+
+        if(type.equals("admin"))
         {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            final DatabaseReference PassRef;
+            PassRef = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("Data");
+
+            PassRef.addListenerForSingleValueEvent(new ValueEventListener()
             {
-                if(dataSnapshot.child("Users").child(PhoneNumber).exists())
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                 {
-                    HashMap<String,Object> userDataMap= new HashMap<>();
 
-                    userDataMap.put("password",newpasskey);
+                              HashMap<String, Object> userDataMap = new HashMap<>();
 
-                    PassRef.child("Users").child(PhoneNumber).updateChildren(userDataMap)
-                            .addOnCompleteListener(new OnCompleteListener<Void>()
-                            {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    if(task.isSuccessful())
-                                    {
-                                        Toast.makeText(NewPasswordActivity.this, "Password Changed Successfully.", Toast.LENGTH_SHORT).show();
+                              userDataMap.put("Password", newpasskey);
 
-                                        Intent intent=new Intent(NewPasswordActivity.this,LoginActivity.class);
-                                        startActivity(intent);
-                                    }
+                              PassRef.updateChildren(userDataMap)
+                                      .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                          @Override
+                                          public void onComplete(@NonNull Task<Void> task) {
+                                              if (task.isSuccessful()) {
+                                                  Toast.makeText(NewPasswordActivity.this, "Password Changed Successfully.", Toast.LENGTH_SHORT).show();
 
-                                    else
-                                    {
+                                                  Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
+                                                  intent.putExtra("value",type);
+                                                  startActivity(intent);
 
-                                        Toast.makeText(NewPasswordActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
+                                              } else {
 
-                                    }
+                                                  Toast.makeText(NewPasswordActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
 
-                                }
-                            });
+                                              }
+
+                                          }
+                                      });
+
+
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+
+                }
+            });
+
+        }
+        else if(type.equals("teacher"))
+        {
+
+
+            final DatabaseReference PassRef;
+            PassRef = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("Teacher").child(PhoneNumber);
+            PassRef.addListenerForSingleValueEvent(new ValueEventListener()
             {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
 
-            }
-        });
+                        HashMap<String,Object> userDataMap= new HashMap<>();
+
+                        userDataMap.put("password",newpasskey);
+
+                        PassRef.updateChildren(userDataMap)
+                                .addOnCompleteListener(new OnCompleteListener<Void>()
+                                {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task)
+                                    {
+                                        if(task.isSuccessful())
+                                        {
+                                            Toast.makeText(NewPasswordActivity.this, "Password Changed Successfully.", Toast.LENGTH_SHORT).show();
+
+                                            Intent intent=new Intent(NewPasswordActivity.this,LoginActivity.class);
+                                            intent.putExtra("value",type);
+                                            startActivity(intent);
+                                        }
+
+                                        else
+                                        {
+
+                                            Toast.makeText(NewPasswordActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+                                });
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+
+                }
+            });
+
+        }
+        else if(type.equals("student"))
+        {
+
+
+            final DatabaseReference PassRef;
+            PassRef = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("Student").child(PhoneNumber);
+            PassRef.addListenerForSingleValueEvent(new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                      HashMap<String,Object> userDataMap= new HashMap<>();
+
+                        userDataMap.put("password",newpasskey);
+
+                        PassRef.updateChildren(userDataMap)
+                                .addOnCompleteListener(new OnCompleteListener<Void>()
+                                {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task)
+                                    {
+                                        if(task.isSuccessful())
+                                        {
+                                            Toast.makeText(NewPasswordActivity.this, "Password Changed Successfully.", Toast.LENGTH_SHORT).show();
+
+                                            Intent intent=new Intent(NewPasswordActivity.this,LoginActivity.class);
+                                            intent.putExtra("value",type);
+                                            startActivity(intent);
+                                        }
+
+                                        else
+                                        {
+
+                                            Toast.makeText(NewPasswordActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
+
+
+                                        }
+
+                                    }
+                                });
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+
+                }
+            });
+
+
+
+        }
+
 
     }
 

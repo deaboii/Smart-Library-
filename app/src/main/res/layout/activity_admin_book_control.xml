@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminBookControlActivity">
+    tools:context=".AdminBookControlActivity"
+    android:background="@drawable/background_blank"
+    >
 
     <RelativeLayout
         android:id="@+id/search_bar"
@@ -21,11 +23,13 @@
             android:layout_height="wrap_content"
             android:hint="Search Books..."
             android:textColorHint="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="12sp"
             android:background="@android:color/white"
-            android:padding="9dp"
-            android:layout_marginStart="3dp"
+            android:padding="15dp"
             android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/search_png"
+            android:textAlignment="center"
+
 
             >
         </EditText>

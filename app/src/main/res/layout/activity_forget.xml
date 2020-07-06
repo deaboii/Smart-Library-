@@ -5,7 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgetActivity">
+    tools:context=".ForgetActivity"
+    android:background="@drawable/background_blank"
+    >
+
+    <EditText
+        android:id="@+id/clgid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/input_design"
+        android:drawableStart="@drawable/college_id_png"
+        android:hint="Enter College Id"
+        android:inputType="number"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_above="@+id/phone_no_input"
+        android:layout_marginBottom="10dp"
+        >
+
+    </EditText>
+
     <EditText
         android:id="@+id/phone_no_input"
         android:inputType="number"
@@ -16,34 +42,34 @@
         android:background="@drawable/input_design"
         android:hint="Enter phone Number"
         android:textAlignment="center"
-        android:layout_marginStart="17dp"
-        android:layout_marginEnd="17dp"
-        android:padding="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:padding="15dp"
         android:textAllCaps="false"
-        android:textSize="15sp"
-        android:drawableStart="@drawable/mobiles"
+        android:textSize="12sp"
+        android:drawableStart="@drawable/phone_png"
         android:textStyle="bold"
         >
 
     </EditText>
     <EditText
         android:id="@+id/verifiaction_input"
-        android:layout_below="@+id/phone_no_input"
+        android:layout_centerInParent="true"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/input_design"
         android:hint="Enter Verification code"
         android:textAlignment="center"
-        android:layout_marginStart="17dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginTop="10dp"
-        android:padding="8dp"
+        android:padding="15dp"
         android:textAllCaps="false"
-        android:textSize="15sp"
-        android:drawableStart="@drawable/verification"
+        android:textSize="12sp"
+        android:drawableStart="@drawable/verificationcode_png"
         android:textStyle="bold"
         android:visibility="invisible"
 
@@ -55,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/verifiaction_input"
+        android:layout_alignParentBottom="true"
         android:text="send verification code"
         android:background="@drawable/buttons"
         android:layout_marginTop="10dp"
@@ -63,6 +89,9 @@
         android:layout_marginEnd="70dp"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
+        android:textSize="12dp"
+        android:padding="15dp"
+        android:layout_marginBottom="10dp"
         >
 
     </Button>
@@ -71,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/send_verification_code"
+        android:layout_alignParentBottom="true"
         android:text="Verify"
         android:background="@drawable/buttons"
         android:layout_marginTop="10dp"
@@ -80,6 +109,9 @@
         android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:visibility="invisible"
+        android:textSize="12dp"
+        android:padding="15dp"
+        android:layout_marginBottom="10dp"
         >
 
     </Button>

@@ -29,10 +29,10 @@ import java.util.concurrent.TimeUnit;
 
 public class ForgetActivity extends AppCompatActivity
 {
-    private EditText phoneno,verifcode;
+    private EditText phoneno,verifcode,clgid;
     private Button sendbtn,verifybtn;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
-    private String mVerificationId ;
+    private String mVerificationId,type="",refkey="";
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private FirebaseAuth mAuth;
     private ProgressDialog LoadingBar;
@@ -42,6 +42,9 @@ public class ForgetActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget);
 
+        type= getIntent().getStringExtra("type");
+
+        clgid=(EditText)findViewById(R.id.clgid);
         phoneno =(EditText)findViewById(R.id.phone_no_input);
         verifcode=(EditText)findViewById(R.id.verifiaction_input);
         sendbtn=(Button)findViewById(R.id.send_verification_code);
@@ -90,7 +93,7 @@ public class ForgetActivity extends AppCompatActivity
 
                 phoneno.setVisibility(View.INVISIBLE);
                 sendbtn.setVisibility(View.INVISIBLE);
-
+                clgid.setVisibility(View.INVISIBLE);
                 verifcode.setVisibility(View.VISIBLE);
                 verifybtn.setVisibility(View.VISIBLE);
 
@@ -137,52 +140,183 @@ public class ForgetActivity extends AppCompatActivity
     {
         String phonenumber=phoneno.getText().toString();
         String verificationcode =verifcode.getText().toString();
+        String Collegeid =clgid.getText().toString();
         if(TextUtils.isEmpty(phonenumber))
         {
             Toast.makeText(this, "Please Enter Phone Number", Toast.LENGTH_SHORT).show();
 
         }
+        else if(TextUtils.isEmpty(Collegeid))
+        {
+
+            Toast.makeText(this, "Please Enter College id ", Toast.LENGTH_SHORT).show();
+
+
+        }
         else
         {
-            validatephone(phonenumber,verificationcode);
+            validatephone(phonenumber,verificationcode,Collegeid);
         }
 
     }
 
-    private void validatephone(final String phonenumber, String verificationcode)
+    private void validatephone(final String phonenumber, String verificationcode, final String collegeid)
     {
-        DatabaseReference RootRef;
+        final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if(dataSnapshot.child("Users").child(phonenumber).exists())
-                {
-                    LoadingBar.setTitle("Phone Verification");
-                    LoadingBar.setMessage("please Wait, While verifing Your phone number...");
-                    LoadingBar.setCanceledOnTouchOutside(false);
-                    LoadingBar.show();
-                    String indiaphonenumber ="+91"+phonenumber;
 
-                    PhoneAuthProvider.getInstance().verifyPhoneNumber
-                            (
-                                    indiaphonenumber,        // Phone number to verify
-                                    60,                 // Timeout duration
-                                    TimeUnit.SECONDS,   // Unit of timeout
-                                    ForgetActivity.this,               // Activity (for callback binding)
-                                    callbacks
-                            );        // OnVerificationStateChangedCallbacks
+                if(dataSnapshot.child("College").child(collegeid).exists())
+                {
+
+
+                    if(type.equals("admin"))
+                    {
+                        refkey= dataSnapshot.child("CollegePhone").child(phonenumber).child("key").getValue().toString();
+
+                        if(dataSnapshot.child("CollegePhone").child(phonenumber).exists())
+                        {
+
+
+                            if(refkey.equals(clgid.getText().toString()))
+                            {
+
+
+                                LoadingBar.setTitle("Phone Verification");
+                                LoadingBar.setMessage("please Wait, While verifing Your phone number...");
+                                LoadingBar.setCanceledOnTouchOutside(false);
+                                LoadingBar.show();
+                                String indiaphonenumber ="+91"+phonenumber;
+
+                                PhoneAuthProvider.getInstance().verifyPhoneNumber
+                                        (
+                                                indiaphonenumber,        // Phone number to verify
+                                                60,                 // Timeout duration
+                                                TimeUnit.SECONDS,   // Unit of timeout
+                                                ForgetActivity.this,               // Activity (for callback binding)
+                                                callbacks
+                                        );        // OnVerificationStateChangedCallbacks
+
+
+
+                            }
+                            else {
+                                Toast.makeText(ForgetActivity.this, "The phone no "+phonenumber+" is not linked with this"+clgid.getText().toString()+"Id", Toast.LENGTH_SHORT).show();
+                                LoadingBar.dismiss();
+                            }
+
+                        }
+                        else
+                        {
+                            Toast.makeText(ForgetActivity.this, "Account Not Exist.", Toast.LENGTH_SHORT).show();
+
+                            Intent intent=new Intent(ForgetActivity.this,MainActivity.class);
+                            startActivity(intent);
+                            LoadingBar.dismiss();
+
+
+                        }
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                    else if(type.equals("student"))
+                    {
+
+
+                        if(dataSnapshot.child("College").child(collegeid).child("Student").child(phonenumber).exists())
+                        {
+                            LoadingBar.setTitle("Phone Verification");
+                            LoadingBar.setMessage("please Wait, While verifing Your phone number...");
+                            LoadingBar.setCanceledOnTouchOutside(false);
+                            LoadingBar.show();
+                            String indiaphonenumber ="+91"+phonenumber;
+
+                            PhoneAuthProvider.getInstance().verifyPhoneNumber
+                                    (
+                                            indiaphonenumber,        // Phone number to verify
+                                            60,                 // Timeout duration
+                                            TimeUnit.SECONDS,   // Unit of timeout
+                                            ForgetActivity.this,               // Activity (for callback binding)
+                                            callbacks
+                                    );        // OnVerificationStateChangedCallbacks
+                        }
+                        else
+                        {
+                            Toast.makeText(ForgetActivity.this, "Account Not Exist.", Toast.LENGTH_SHORT).show();
+
+                            Intent intent=new Intent(ForgetActivity.this,MainActivity.class);
+                            startActivity(intent);
+
+                        }
+
+
+                    }
+                    else if(type.equals("teacher"))
+                    {
+                        if(dataSnapshot.child("College").child(collegeid).child("Teacher").child(phonenumber).exists())
+                        {
+                            LoadingBar.setTitle("Phone Verification");
+                            LoadingBar.setMessage("please Wait, While verifing Your phone number...");
+                            LoadingBar.setCanceledOnTouchOutside(false);
+                            LoadingBar.show();
+                            String indiaphonenumber ="+91"+phonenumber;
+
+                            PhoneAuthProvider.getInstance().verifyPhoneNumber
+                                    (
+                                            indiaphonenumber,        // Phone number to verify
+                                            60,                 // Timeout duration
+                                            TimeUnit.SECONDS,   // Unit of timeout
+                                            ForgetActivity.this,               // Activity (for callback binding)
+                                            callbacks
+                                    );        // OnVerificationStateChangedCallbacks
+                        }
+                        else
+                        {
+                            Toast.makeText(ForgetActivity.this, "Account Not Exist.", Toast.LENGTH_SHORT).show();
+
+                            Intent intent=new Intent(ForgetActivity.this,MainActivity.class);
+                            startActivity(intent);
+
+                        }
+
+
+
+
+
+                    }
+
+
+
+
                 }
                 else
                 {
-                    Toast.makeText(ForgetActivity.this, "Account Not Exist.", Toast.LENGTH_SHORT).show();
 
-                    Intent intent=new Intent(ForgetActivity.this,MainActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(ForgetActivity.this, "College Id not exist", Toast.LENGTH_SHORT).show();
+
 
                 }
+
+
+
+
 
 
             }
@@ -209,6 +343,8 @@ public class ForgetActivity extends AppCompatActivity
                             LoadingBar.dismiss();
                             Intent intent=new Intent(ForgetActivity.this,NewPasswordActivity.class);
                             intent.putExtra("phonenumber",phoneno.getText().toString());
+                            intent.putExtra("key",clgid.getText().toString());
+                            intent.putExtra("type",type);
                             startActivity(intent);
                         }
                         else

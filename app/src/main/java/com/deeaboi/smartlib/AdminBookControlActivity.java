@@ -30,7 +30,7 @@ public class AdminBookControlActivity extends AppCompatActivity
     protected Button searchbtn;
     private EditText inputText;
     private RecyclerView searchList;
-    private String searchinput;
+    private String searchinput,key="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,6 +42,8 @@ public class AdminBookControlActivity extends AppCompatActivity
         inputText =findViewById(R.id.search_book_name);
         searchbtn =findViewById(R.id.search_btn);
         searchList=findViewById(R.id.search_list);
+
+        key=getIntent().getStringExtra("key");
 
         searchList.setLayoutManager(new LinearLayoutManager(AdminBookControlActivity.this));
 
@@ -59,7 +61,12 @@ public class AdminBookControlActivity extends AppCompatActivity
     {
         super.onStart();
 
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products Books");
+       // final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products Books");
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("Library Books");
+
+
+
+
 
         FirebaseRecyclerOptions<ProductsBooks> options =
                 new FirebaseRecyclerOptions.Builder<ProductsBooks>()
@@ -105,6 +112,7 @@ public class AdminBookControlActivity extends AppCompatActivity
                                         {
                                             Intent intent= new Intent(AdminBookControlActivity.this,AdminEditActivity.class);
                                            intent.putExtra("pid",productsBooks.getPid());
+                                           intent.putExtra("key",key);
                                             startActivity(intent);
 
                                         }

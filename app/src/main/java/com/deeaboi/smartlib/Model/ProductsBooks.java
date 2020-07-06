@@ -2,13 +2,13 @@ package com.deeaboi.smartlib.Model;
 
 public class ProductsBooks
 {
-  private String pname,Author,image,pid,date,time;
+  private String pname,Author,image,pid,date,time,Category;
   public ProductsBooks()
   {
 
   }
 
-    public ProductsBooks(String pname, String author, String image, String pid, String date, String time)
+    public ProductsBooks(String pname, String author, String image, String pid, String date, String time, String category)
     {
         this.pname = pname;
         Author = author;
@@ -16,6 +16,7 @@ public class ProductsBooks
         this.pid = pid;
         this.date = date;
         this.time = time;
+        Category = category;
     }
 
     public String getPname() {
@@ -65,5 +66,13 @@ public class ProductsBooks
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
     }
 }

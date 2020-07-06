@@ -5,48 +5,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FineActivity">
+    tools:context=".FineActivity"
+    android:background="@drawable/background_blank">
 
-    <ImageView
-        android:id="@+id/rupeeicon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/rupeeicon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        >
-    </ImageView>
     <TextView
         android:id="@+id/Totalfineview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rupeeicon"
+
         android:text="No Fine"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="60dp"
+        android:layout_centerInParent="true"
+        android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:textAllCaps="true"
         android:layout_marginTop="30dp"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@color/colorAccent"
+        android:drawableTop="@drawable/moneylogo_png"
         >
     </TextView>
 
     <Button
         android:id="@+id/payfinebtn"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pay Fine"
         android:textAllCaps="false"
         android:textAlignment="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_centerHorizontal="true"
-       android:layout_below="@+id/Totalfineview"
         android:background="@drawable/buttons"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_marginTop="60dp"
-
+        android:textSize="12dp"
+        android:padding="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
     </Button>
 
@@ -57,9 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3732282418296287/5285534703"
+        android:layout_marginTop="10dp"
         >
     </com.google.android.gms.ads.AdView>
 

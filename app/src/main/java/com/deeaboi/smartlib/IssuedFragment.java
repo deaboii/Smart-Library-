@@ -49,9 +49,17 @@ public class IssuedFragment extends Fragment
                              Bundle savedInstanceState)
     {
 
+
+
       IssuedFragmentView= inflater.inflate(R.layout.fragment_issued, container, false);
 
-      reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Issue");
+//        key = getArguments().getString("key");
+
+
+//      reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Issue");
+
+
+        reference = FirebaseDatabase.getInstance().getReference().child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Issue");
 
       IssuedBooklist=(RecyclerView)IssuedFragmentView.findViewById(R.id.user_issue_book_list);
 

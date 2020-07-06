@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment"
+    android:background="@drawable/background_blank"
+    >
+
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="55dp"
+        >
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="35dp"
+            >
+
+
+        <ImageView
+            android:id="@+id/addBooks"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/addbooks"
+         android:layout_gravity="center"
+            >
+        </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Add Books"
+                android:textColor="#18C9FF"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                >
+
+            </TextView>
+
+
+        </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/searchbooks"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/search"
+            android:layout_gravity="center"
+            >
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Search Books"
+            android:textColor="#18C9FF"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/line1"
+        android:layout_marginTop="25dp"
+        >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="35dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/managebooks"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/managebooks"
+            android:layout_gravity="center"
+
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Books"
+            android:textColor="#18C9FF"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textAlignment="center"
+
+
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/manageusers"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/manageusers"
+            android:layout_gravity="center"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Users"
+            android:textColor="#18C9FF"
+            android:textStyle="bold"
+            android:textSize="15dp"
+        android:layout_gravity="center"
+            android:textAlignment="center"
+
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_below="@id/line2"
+            android:layout_marginTop="25dp"
+            >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="53dp"
+        >
+
+            <ImageView
+                android:id="@+id/studentlist"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/studentlist"
+                android:layout_gravity="center"
+                >
+            </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Student List"
+            android:textColor="#18C9FF"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+    <ImageView
+                android:id="@+id/booklist"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/booklist"
+        android:layout_gravity="center"
+                >
+            </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Books List"
+            android:textColor="#18C9FF"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_below="@id/line3"
+            android:layout_marginTop="25dp"
+            >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="35dp"
+
+        >
+
+            <ImageView
+                android:id="@+id/coursesoffered"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/courses"
+                android:layout_gravity="center"
+                >
+            </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Courses Offered"
+            android:textColor="#18C9FF"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+
+            >
+
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+            <ImageView
+                android:id="@+id/assignbooks"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/addbooks"
+                android:layout_gravity="center"
+                >
+            </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assign Books"
+            android:textColor="#18C9FF"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+
+
+        </LinearLayout>
+
+
+</RelativeLayout>

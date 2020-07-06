@@ -38,6 +38,7 @@ public class RefrenceFragment extends Fragment
     private  DatabaseReference reference;
     Integer fine;
 
+
     public RefrenceFragment()
     {
         // Required empty public constructor
@@ -47,10 +48,13 @@ public class RefrenceFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+
+
         RefrencefragmentView= inflater.inflate(R.layout.fragment_refrence, container, false);
         RefrenceBookList=(RecyclerView)RefrencefragmentView.findViewById(R.id.recycler_view_frag);
         RefrenceBookList.setLayoutManager(new LinearLayoutManager(getContext()));
-        reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Refrence");
+       // reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Refrence");
+        reference = FirebaseDatabase.getInstance().getReference().child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("UserBooks").child(Prevalent.CurrentOnlineUser.getPhone()).child("Refrence");
 
         return RefrencefragmentView;
     }

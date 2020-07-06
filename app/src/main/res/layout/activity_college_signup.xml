@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".collegeSignupActivity"
+    android:background="@drawable/background_blank"
+    >
+
+    <TextView
+        android:id="@+id/CreatAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creat Account"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textColor="#005EFF"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/EnterDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CreatAccount"
+        android:text="Enter Details"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#8A8A8A"
+        android:textSize="18sp"
+
+        >
+
+    </TextView>
+
+
+
+
+
+            <EditText
+                android:id="@+id/clgname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter College Name"
+                android:textAlignment="center"
+                android:inputType="textMultiLine"
+                android:textColor="#2f9fe1"
+                android:textColorHint="#C6C6C6"
+                android:layout_below="@id/EnterDetails"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+
+                >
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/clgaddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="College Address"
+                android:textAlignment="center"
+                android:inputType="textMultiLine"
+                android:textColor="#2f9fe1"
+                android:textColorHint="#C6C6C6"
+                android:layout_below="@+id/clgname"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                >
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/clgpin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/clgaddress"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#2f9fe1"
+                android:textColorHint="#C6C6C6"
+                android:hint="College Pin"
+                android:textAlignment="center"
+                android:inputType="number"
+
+                >
+
+            </EditText>
+
+    <EditText
+        android:id="@+id/clgKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clgpin"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#2f9fe1"
+        android:textColorHint="#C6C6C6"
+        android:hint="Unique key"
+        android:textAlignment="center"
+        android:inputType="number"
+
+        >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/clgpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clgKey"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#2f9fe1"
+        android:textColorHint="#C6C6C6"
+        android:hint="Enter Password"
+        android:textAlignment="center"
+        android:inputType="textPassword"
+
+        >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/CreatCollegeAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:layout_below="@+id/clgpassword"
+        android:layout_marginTop="15dp"
+        android:text="Creat Account"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+
+        >
+    </Button>
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/back"
+
+
+        />
+
+
+
+
+
+
+
+
+</RelativeLayout>

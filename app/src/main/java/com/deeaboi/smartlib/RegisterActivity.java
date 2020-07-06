@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity
 {
     private Button CreatAccountButton;
     private EditText InputName,InputPassword;
-    private String  InputPhoneNumber="";
+    private String  InputPhoneNumber="",Collegekey="",type="";
     private ProgressDialog loadingBar;
 
 
@@ -39,7 +39,29 @@ public class RegisterActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
+
+        Intent intent =getIntent();
+        Bundle bundle =intent.getExtras();              //add for teacher sign up good on student
+//
+//        if(bundle!=null)
+//        {
+//            InputPhoneNumber=getIntent().getStringExtra("phonenumber");
+//            Collegekey=getIntent().getStringExtra("Collegekey");
+//            type =getIntent().getStringExtra("type");
+//
+//
+//        }
+
+
+//good for student till now change for teacher...
+
           InputPhoneNumber=getIntent().getStringExtra("phonenumber");
+          Collegekey=getIntent().getStringExtra("Collegekey");
+          type =getIntent().getStringExtra("type");
+
+
+
 
         CreatAccountButton = (Button)findViewById(R.id.register_btn);
         InputName = (EditText)findViewById(R.id.Register_username_input);
@@ -80,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity
           loadingBar.setCanceledOnTouchOutside(false);
           loadingBar.show();
 
-     ValidatePhoneNumber(name,InputPhoneNumber,password);
+     ValidatePhoneNumber(name,InputPhoneNumber,password,Collegekey);
 
 
         }
@@ -88,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity
 
     }
 
-    private void ValidatePhoneNumber(final String name, final String phone, final String password)
+    private void ValidatePhoneNumber(final String name, final String phone, final String password, final String collegekey)
     {
       final DatabaseReference RootRef;
       RootRef = FirebaseDatabase.getInstance().getReference();
@@ -98,52 +120,110 @@ public class RegisterActivity extends AppCompatActivity
           public void onDataChange(@NonNull DataSnapshot dataSnapshot)
           {
 
-              if(!(dataSnapshot.child("Users").child(phone).exists()))
+              if(type.equals("teacher"))
               {
-                  HashMap<String,Object> userDataMap= new HashMap<>();
-                  userDataMap.put("phone",phone);
-                  userDataMap.put("password",password);
-                  userDataMap.put("name",name);
-                  RootRef.child("Users").child(phone).updateChildren(userDataMap)
-                          .addOnCompleteListener(new OnCompleteListener<Void>()
-                          {
-                              @Override
-                              public void onComplete(@NonNull Task<Void> task)
-                              {
-                               if(task.isSuccessful())
-                               {
-                                   Toast.makeText(RegisterActivity.this, "Account Created Successfully.", Toast.LENGTH_SHORT).show();
-                                   loadingBar.dismiss();
+                  if(!dataSnapshot.child("College").child(collegekey).child("Teacher").child(phone).exists())
+                  {
 
-                                   Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                                   startActivity(intent);
-                               }
-                               
-                               else
-                                   {
-                                       loadingBar.dismiss();
-                                       Toast.makeText(RegisterActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
+                      HashMap<String, Object> userDataMap = new HashMap<>();
+                      userDataMap.put("phone", phone);
+                      userDataMap.put("password", password);
+                      userDataMap.put("name", name);
+                      userDataMap.put("key", Collegekey);
+//                  RootRef.child("Users").child(phone).updateChildren(userDataMap)
+                      RootRef.child("College").child(Collegekey).child("Teacher").child(phone).updateChildren(userDataMap)
+                              .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                  @Override
+                                  public void onComplete(@NonNull Task<Void> task) {
+                                      if (task.isSuccessful())
+                                      {
+                                          Toast.makeText(RegisterActivity.this, "Account Created Successfully.", Toast.LENGTH_SHORT).show();
+                                          loadingBar.dismiss();
 
-                                   }
+                                          Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                          intent.putExtra("value", "teacher");
+                                          startActivity(intent);
+                                      }
 
-                              }
-                          });
+                                      else
+                                          {
+                                          loadingBar.dismiss();
+                                          Toast.makeText(RegisterActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
+
+                                      }
+
+                                  }
+                              });
+
+
+                  }
+                  else
+                  {
+
+                      Toast.makeText(RegisterActivity.this, "This" + phone + "number is Already exist", Toast.LENGTH_SHORT).show();
+                      loadingBar.dismiss();
+                      Toast.makeText(RegisterActivity.this, "Please Try Again with Another Phone Number", Toast.LENGTH_SHORT).show();
+
+                      Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                      startActivity(intent);
+
+
+                  }
+
 
 
 
               }
-              else
-              {
+              else if(type.equals("student"))
+                  {
 
-                  Toast.makeText(RegisterActivity.this, "This"+phone+"number is Alresdy exist", Toast.LENGTH_SHORT).show();
-                  loadingBar.dismiss();
-                  Toast.makeText(RegisterActivity.this, "Please Try Again with Another Phone Number", Toast.LENGTH_SHORT).show();
+//              if(!(dataSnapshot.child("Users").child(phone).exists()))
+                  if (!(dataSnapshot.child("College").child(collegekey).child("Student").child(phone).exists()))
+                  {
+                      HashMap<String, Object> userDataMap = new HashMap<>();
+                      userDataMap.put("phone", phone);
+                      userDataMap.put("password", password);
+                      userDataMap.put("name", name);
+                      userDataMap.put("key", Collegekey);
+//                  RootRef.child("Users").child(phone).updateChildren(userDataMap)
+                      RootRef.child("College").child(Collegekey).child("Student").child(phone).updateChildren(userDataMap)
+                              .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                  @Override
+                                  public void onComplete(@NonNull Task<Void> task) {
+                                      if (task.isSuccessful()) {
+                                          Toast.makeText(RegisterActivity.this, "Account Created Successfully.", Toast.LENGTH_SHORT).show();
+                                          loadingBar.dismiss();
 
-                  Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-                  startActivity(intent);
+                                          Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                          intent.putExtra("value", "student"); //chng to value
+                                          startActivity(intent);
+                                      } else {
+                                          loadingBar.dismiss();
+                                          Toast.makeText(RegisterActivity.this, "Error : Please Try Again...", Toast.LENGTH_SHORT).show();
+
+                                      }
+
+                                  }
+                              });
+
+
+                  }
+                  else
+                      {
+
+                      Toast.makeText(RegisterActivity.this, "This" + phone + "number is Already exist", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(RegisterActivity.this, "Please Try Again with Another Phone Number", Toast.LENGTH_SHORT).show();
+                      Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                      startActivity(intent);
+                          loadingBar.dismiss();
+
+
+                  }
 
 
               }
+
+
 
           }
 

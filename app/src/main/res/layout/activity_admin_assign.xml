@@ -1,92 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".AdminAssignActivity"
-    android:layout_marginTop="20dp"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
-    app:cardMaxElevation="15dp"
+    android:background="@drawable/background_blank"
     >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+
+    <ImageView
+        android:id="@+id/product_Book_image"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        />
     <TextView
         android:id="@+id/product_book_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="12dp"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textAllCaps="true"/>
-
-    <ImageView
-        android:id="@+id/product_Book_image"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="2dp"
-        android:layout_below="@+id/product_book_name"
+        android:padding="15dp"
+        android:text="Physics"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/product_Book_image"
         />
     <TextView
         android:id="@+id/product_book_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="12dp"
+        android:padding="15dp"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="Author"
+        android:textStyle="bold"
         android:textAllCaps="true"
-        android:layout_below="@+id/product_Book_image"/>
+        android:layout_below="@+id/product_book_name"/>
     <EditText
         android:id="@+id/rollnumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/product_book_author"
-        android:hint="Enter Roll Number..."
+      android:layout_centerHorizontal="true"
+     android:layout_below="@+id/product_book_author"
+        android:hint="Enter Mobile Number.."
         android:textAlignment="center"
         android:background="@drawable/input_design"
-        android:textColor="@android:color/black"
-        android:textSize="18dp"
-        android:padding="12dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="12dp"
+        android:padding="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:inputType="number"
+        android:drawableLeft="@drawable/phone_png"
         />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/Issued_Books_chk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-            android:text="Issue Book"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="15dp"
-            android:layout_below="@+id/rollnumber"
-
-            />
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/Refrence_Books_chk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-            android:text="Refrence Book"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="17dp"
-            android:layout_below="@+id/Issued_Books_chk"
-
-
-            />
 
 
 
@@ -94,7 +68,7 @@
         android:id="@+id/Add_to_Students"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Refrence_Books_chk"
+
         android:background="@drawable/buttons"
         android:textColor="@android:color/white"
         android:padding="12dp"
@@ -105,11 +79,45 @@
         android:textSize="18dp"
         android:textAllCaps="false"
         android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
 
         />
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rollnumber"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:id="@+id/radio_issue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Issue Book"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            />
+        <RadioButton
+            android:id="@+id/radio_reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reference Book"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            />
+        <RadioButton
+            android:id="@+id/radio_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teacher"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            />
+
+
+
+
+    </RadioGroup>
 </RelativeLayout>
-
-
-
-</androidx.cardview.widget.CardView>

@@ -5,85 +5,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ControlActivity">
+    tools:context=".ControlActivity"
+    android:background="@drawable/background_blank"
+    >
 
     <ImageView
         android:id="@+id/product_Book_image"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/admin_settings_male"
+        android:layout_above="@+id/rollnumber"
         />
 
     <EditText
         android:id="@+id/rollnumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/product_Book_image"
-        android:hint="Enter Roll Number..."
+        android:hint="Enter Mobile Number.."
         android:textAlignment="center"
         android:background="@drawable/input_design"
         android:textColor="@android:color/black"
-        android:textSize="18dp"
-        android:padding="12dp"
+        android:textSize="12dp"
+        android:padding="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:inputType="number"
-
-        />
-
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/Issued_Books_chk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-        android:text="Issue Book"
-        android:textColor="@color/colorPrimaryDark"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/rollnumber"
-
-        />
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/Refrence_Books_chk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-        android:text="Refrence Book"
-        android:textColor="@color/colorPrimaryDark"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="17dp"
-        android:layout_below="@+id/Issued_Books_chk"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
 
 
         />
-
-
 
     <Button
         android:id="@+id/managebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Refrence_Books_chk"
+       android:layout_alignParentBottom="true"
         android:background="@drawable/buttons"
         android:textColor="@android:color/white"
         android:padding="12dp"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
         android:text="Manage"
-        android:layout_marginTop="15dp"
+
         android:textSize="18dp"
         android:textAllCaps="false"
         android:layout_marginBottom="15dp"
 
         />
+      <RadioGroup
+          android:id="@+id/radioGroup"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/rollnumber"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="10dp"
+          android:layout_marginTop="15dp"
+          >
+
+          <RadioButton
+              android:id="@+id/radio_issue_books"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Issue Books"
+              android:textColor="@color/colorPrimaryDark"
+              android:textStyle="bold"
+              android:textAllCaps="false"
+              />
+
+          <RadioButton
+              android:id="@+id/radio_reference_book"
+              android:text="Reference Books"
+              android:textAllCaps="false"
+              android:textStyle="bold"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/colorPrimaryDark">
+
+          </RadioButton>
+
+          <RadioButton
+              android:id="@+id/radio_teacher_books"
+              android:text="Teachers Books"
+              android:textAllCaps="false"
+              android:textStyle="bold"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/colorPrimaryDark">
+
+          </RadioButton>
+
+
+      </RadioGroup>
 
 </RelativeLayout>

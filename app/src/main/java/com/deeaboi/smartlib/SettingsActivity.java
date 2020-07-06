@@ -112,7 +112,8 @@ public class SettingsActivity extends AppCompatActivity
 
     private void updateOnlyUserInfo()
     {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+       // DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("Student");
 
         HashMap<String, Object> userMap = new HashMap<>();
         userMap. put("name", fullNameEditText.getText().toString());
@@ -210,7 +211,7 @@ public class SettingsActivity extends AppCompatActivity
                                 Uri downloadUrl = task.getResult();
                                 myUrl = downloadUrl.toString();
 
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+                                DatabaseReference ref =  FirebaseDatabase.getInstance().getReference().child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("Student");
 
                                 HashMap<String, Object> userMap = new HashMap<>();
 
@@ -245,7 +246,7 @@ public class SettingsActivity extends AppCompatActivity
     private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText  rollEditText)
 
     {
-        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.CurrentOnlineUser.getPhone());
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("College").child(Prevalent.CurrentOnlineUser.getKey()).child("Student").child(Prevalent.CurrentOnlineUser.getPhone());
 
         UsersRef.addValueEventListener(new ValueEventListener() {
             @Override

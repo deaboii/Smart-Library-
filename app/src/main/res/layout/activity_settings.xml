@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".SettingsActivity"
+    android:background="@drawable/background_blank">
 
       <com.google.android.material.appbar.AppBarLayout
           android:id="@+id/app_bar_settings"
@@ -26,8 +27,9 @@
                             android:layout_height="wrap_content"
                             android:text="Close"
                             android:textColor="@android:color/white"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
+                            android:padding="15dp"
                              android:layout_alignParentStart="true"
                             />
 
@@ -37,10 +39,11 @@
                             android:layout_height="wrap_content"
                             android:text="Update"
                             android:textColor="@android:color/white"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             android:layout_alignParentEnd="true"
                             android:layout_marginRight="10dp"
+                            android:padding="15dp"
                             />
 
                   </RelativeLayout>
@@ -68,12 +71,12 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="Change Profile"
-          android:textSize="16sp"
+          android:textSize="14sp"
          android:layout_centerHorizontal="true"
           android:textStyle="bold"
           android:layout_below="@id/setting_profile_image"
           android:layout_marginTop="5dp"
-          android:textColor="@android:color/black"
+          android:textColor="@android:color/holo_blue_light"
 
           />
 
@@ -85,7 +88,10 @@
           android:layout_below="@+id/profile_image_change_btn"
           android:hint="New Phone Number"
           android:layout_margin="15dp"
-          android:padding="10dp"
+          android:padding="15dp"
+          android:textSize="12dp"
+          android:drawableLeft="@drawable/phone_png"
+          android:textAlignment="center"
           />
 
       <EditText
@@ -96,7 +102,10 @@
           android:layout_below="@+id/Setting_phone_number"
           android:hint="Enter Full Name"
           android:layout_margin="15dp"
-          android:padding="10dp"
+          android:padding="15dp"
+          android:textSize="12dp"
+          android:textAlignment="center"
+          android:drawableLeft="@drawable/college_id_png"
           />
       <EditText
           android:id="@+id/Setting_roll_number"
@@ -106,7 +115,10 @@
           android:layout_below="@+id/Setting_full_name"
           android:hint="Enter Your Roll Number"
           android:layout_margin="15dp"
-          android:padding="10dp"
+          android:padding="15dp"
+          android:textSize="12dp"
+          android:textAlignment="center"
+          android:drawableLeft="@drawable/rollnumber_png"
           />
 
 

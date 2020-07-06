@@ -9,7 +9,8 @@
     android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-
+    android:textAlignment="center"
     >
 
+    
 </androidx.appcompat.widget.Toolbar>

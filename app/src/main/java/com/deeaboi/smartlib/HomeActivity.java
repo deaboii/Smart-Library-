@@ -1,12 +1,14 @@
 package com.deeaboi.smartlib;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.deeaboi.smartlib.Prevalent.Prevalent;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -14,16 +16,23 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -39,8 +48,6 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,7 +56,11 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("Smart Library");
+
         Paper.init(this);
+        toolbar.setSubtitle("Best Library Managment");
+
 
         myViewpager=(ViewPager)findViewById(R.id.main_tabs_pager);
         mytabsAccessorAdapter= new TabsAccessorAdapter(getSupportFragmentManager());
@@ -71,9 +82,9 @@ public class HomeActivity extends AppCompatActivity
         TextView UserNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-       UserNameTextView.setText(Prevalent.CurrentOnlineUser.getName());
+         UserNameTextView.setText(Prevalent.CurrentOnlineUser.getName());
 
-        Picasso.get().load(Prevalent.CurrentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        Picasso.get().load(Prevalent.CurrentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView); // circle view on tabs upper and name
 
 
     }
@@ -115,6 +126,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_searchbooks)
         {
             Intent intent=new Intent(HomeActivity.this,SearchActivity.class);
+            intent.putExtra("Admin","Users");
+            intent.putExtra("key",Prevalent.CurrentOnlineUser.getKey());
             startActivity(intent);
         }
         else if (id == R.id.nav_oders)
@@ -126,11 +139,11 @@ public class HomeActivity extends AppCompatActivity
         {
             Intent shareintent =new Intent(Intent.ACTION_SEND);
             shareintent.setType("text/plain");
-            String sharebody="https://play.google.com/store/apps/details?id=com.example.smartlib";
+            String sharebody="https://play.google.com/store/apps/details?id=com.deeaboi.smartlib";
             String sharesub="Install from Playstore";
             shareintent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
             shareintent.putExtra(Intent.EXTRA_TEXT,sharebody);
-            startActivity(Intent.createChooser(shareintent,"share via"));
+            startActivity(Intent.createChooser(shareintent,"Share with"));
         }
         else if (id == R.id.nav_settings)
         {

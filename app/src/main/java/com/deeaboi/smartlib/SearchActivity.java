@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.deeaboi.smartlib.Model.ProductsBooks;
 import com.deeaboi.smartlib.ViewHolder.ProductBookViewHolder;
@@ -27,7 +28,7 @@ public class SearchActivity extends AppCompatActivity
        private EditText inputText;
        private RecyclerView searchList;
        private String searchinput;
-       private String type ="";
+       private String type ="",key="";
   //watch video admin accesss products for both user and admin
 
     @Override
@@ -37,16 +38,20 @@ public class SearchActivity extends AppCompatActivity
         setContentView(R.layout.activity_search);
 
 
+//                Intent intent =getIntent();
+//                Bundle bundle =intent.getExtras();
+//
+//                    if(bundle!=null)
+//           {
+//             type = getIntent().getExtras().get("Admin").toString();
+//             key=getIntent().getExtras().get("key").toString();
+//            }
 
 
+        type = getIntent().getStringExtra("Admin");
+        key=getIntent().getStringExtra("key");
 
-                Intent intent =getIntent();
-                Bundle bundle =intent.getExtras();
 
-                    if(bundle!=null)
-           {
-             type = getIntent().getExtras().get("Admin").toString();
-            }
 
 
 
@@ -56,7 +61,8 @@ public class SearchActivity extends AppCompatActivity
 
         searchList.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 
-        searchbtn.setOnClickListener(new View.OnClickListener() {
+        searchbtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -72,7 +78,8 @@ public class SearchActivity extends AppCompatActivity
     {
         super.onStart();
 
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products Books");
+//        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products Books");chng the reference for update datbase
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("Library Books");
 
         FirebaseRecyclerOptions<ProductsBooks> options =
                 new FirebaseRecyclerOptions.Builder<ProductsBooks>()
@@ -84,7 +91,7 @@ public class SearchActivity extends AppCompatActivity
                 new FirebaseRecyclerAdapter<ProductsBooks, ProductBookViewHolder>(options)
                 {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductBookViewHolder productBookViewHolder, int i, @NonNull final ProductsBooks productsBooks)
+                    protected void onBindViewHolder(@NonNull ProductBookViewHolder productBookViewHolder, final int i, @NonNull final ProductsBooks productsBooks)
                     {
                          productBookViewHolder.txtproductbookname.setText(productsBooks.getPname());
                         productBookViewHolder.txtproductbookauther.setText(productsBooks.getAuthor());
@@ -100,8 +107,17 @@ public class SearchActivity extends AppCompatActivity
                                 {
                                     Intent intent= new Intent(SearchActivity.this,AdminAssignActivity.class);
                                     intent.putExtra("pid",productsBooks.getPid());
-
+                                    intent.putExtra("key",key);
                                     startActivity(intent);
+                                    finish();
+
+                                }
+                                else if (type.equals("User"))
+                                {
+                                    Toast.makeText(SearchActivity.this, "Search Books Here", Toast.LENGTH_SHORT).show();
+
+                                    //do on click listener for students
+
 
                                 }
 

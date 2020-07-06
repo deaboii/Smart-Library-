@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class Main2Activity extends AppCompatActivity
 {
     private RecyclerView searchList;
-    private  String value="",type="";
+    private  String value="",type="",key="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,6 +38,7 @@ public class Main2Activity extends AppCompatActivity
         {
           value=getIntent().getExtras().get("roll").toString();
             type=getIntent().getExtras().get("Admin").toString();
+            key=getIntent().getExtras().get("key").toString();
         }
 
         searchList=findViewById(R.id.search_list);
@@ -55,11 +56,14 @@ public class Main2Activity extends AppCompatActivity
         super.onStart();
         if( type.equals("Admin"))
         {
-            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(value).child("Issue");
+            //final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(value).child("Issue");
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("UserBooks").child(value).child("Issue");
             FirebaseRecyclerOptions<IssuedUserBooks> options =
                     new FirebaseRecyclerOptions.Builder<IssuedUserBooks>()
                             .setQuery(reference, IssuedUserBooks.class)
                             .build();
+
+
             FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder> adapter =
                     new FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder>(options)
                     {
@@ -94,6 +98,7 @@ public class Main2Activity extends AppCompatActivity
                                                //String uID = getRef(i).getKey();
                                                 String uID= productsBooks.getPid();
                                                reference.child(uID).removeValue();
+                                               finish();
 
                                             }
                                             else
@@ -127,7 +132,7 @@ public class Main2Activity extends AppCompatActivity
         else if(type.equals("Admin1"))
         {
 
-           final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("UserBooks").child(value).child("Refrence"); //value =Roll from intent
+           final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("UserBooks").child(value).child("Refrence"); //value =Roll from intent
            //
 
             FirebaseRecyclerOptions<IssuedUserBooks> options =
@@ -135,9 +140,15 @@ public class Main2Activity extends AppCompatActivity
                             .setQuery(reference, IssuedUserBooks.class)
                             .build();
             FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder> adapter =
-                    new FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder>(options) {
+                    new FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder>(options)
+                    {
                         @Override
-                        protected void onBindViewHolder(@NonNull BookViewHolder productBookViewHolder, int i, @NonNull final IssuedUserBooks productsBooks) {
+                        protected void onBindViewHolder(@NonNull BookViewHolder productBookViewHolder, int i, @NonNull final IssuedUserBooks productsBooks)
+                        {
+
+
+
+
                             productBookViewHolder.txtproductbookname.setText(productsBooks.getPname());
                             productBookViewHolder.txtproductbookauther.setText(productsBooks.getAuthor());
                             productBookViewHolder.DateTime.setText("Issued On:" + productsBooks.getDate());
@@ -167,6 +178,7 @@ public class Main2Activity extends AppCompatActivity
 
                                                 String uID= productsBooks.getPid();
                                                 reference.child(uID).removeValue();
+                                                finish();
 
                                             }
                                             else
@@ -183,6 +195,8 @@ public class Main2Activity extends AppCompatActivity
                             });
 
 
+
+
                         }
 
                         @NonNull
@@ -196,6 +210,97 @@ public class Main2Activity extends AppCompatActivity
             searchList.setAdapter(adapter);
             adapter.startListening();
         }
+
+
+        else
+            if(type.equals("teacher"))
+            {
+
+
+
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("College").child(key).child("TeachersBooks").child(value); //value =Roll from intent
+                //
+
+                FirebaseRecyclerOptions<IssuedUserBooks> options =
+                        new FirebaseRecyclerOptions.Builder<IssuedUserBooks>()
+                                .setQuery(reference, IssuedUserBooks.class)
+                                .build();
+                FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder> adapter =
+                        new FirebaseRecyclerAdapter<IssuedUserBooks, BookViewHolder>(options)
+                        {
+                            @Override
+                            protected void onBindViewHolder(@NonNull BookViewHolder productBookViewHolder, int i, @NonNull final IssuedUserBooks productsBooks)
+                            {
+
+
+
+
+                                productBookViewHolder.txtproductbookname.setText(productsBooks.getPname());
+                                productBookViewHolder.txtproductbookauther.setText(productsBooks.getAuthor());
+                                productBookViewHolder.DateTime.setText("Issued On:" + productsBooks.getDate());
+
+                                Picasso.get().load(productsBooks.getImage()).into(productBookViewHolder.imageView);
+
+                                productBookViewHolder.itemView.setOnClickListener(new View.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(View view)
+                                    {
+
+                                        CharSequence options[]=new CharSequence[]
+                                                {
+                                                        "Yes","No"
+                                                };
+                                        AlertDialog.Builder builder =new AlertDialog.Builder(Main2Activity.this);
+                                        builder.setTitle("Remove Issue Book  !");
+
+                                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i)
+                                            {
+                                                if (i == 0)
+                                                {
+                                                    // String uID = getRef(i).getKey(); // error
+
+                                                    String uID= productsBooks.getPid();
+                                                    reference.child(uID).removeValue();
+                                                    finish();
+
+                                                }
+                                                else
+                                                {
+                                                    finish();
+                                                }
+
+                                            }
+                                        });
+
+                                        builder.show();
+
+                                    }
+                                });
+
+
+
+
+                            }
+
+                            @NonNull
+                            @Override
+                            public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.issued_layout, parent, false);
+                                BookViewHolder holder = new BookViewHolder(view);
+                                return holder;
+                            }
+                        };
+                searchList.setAdapter(adapter);
+                adapter.startListening();
+
+
+
+
+
+            }
 
 
     }

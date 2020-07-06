@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.deeaboi.smartlib">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:configChanges="orientation|screenSize"
@@ -11,50 +11,60 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.deeaboi.smartlib.FineActivity"></activity>
-
-        <activity android:name="com.deeaboi.smartlib.NewPasswordActivity" />
-
-        <activity android:name="com.deeaboi.smartlib.ForgetActivity" />
-        <activity android:name="com.deeaboi.smartlib.PhoneActivity" />
-        <activity android:name="com.deeaboi.smartlib.AdminEditActivity" />
-        <activity android:name="com.deeaboi.smartlib.AdminBookControlActivity" />
-        <activity android:name="com.deeaboi.smartlib.ControlActivity" />
-        <activity android:name="com.deeaboi.smartlib.Main2Activity" />
-        <activity android:name="com.deeaboi.smartlib.AdminAssignActivity" />
-        <activity android:name="com.deeaboi.smartlib.SearchActivity" />
-        <activity android:name="com.deeaboi.smartlib.AdminCategoryActivity" />
-        <activity android:name="com.deeaboi.smartlib.uploadActivity" />
-        <activity android:name="com.deeaboi.smartlib.SettingsActivity" />
+        <activity android:name=".ScanToAddActivity"></activity>
+        <activity android:name=".TeacherLoginActivity" />
+        <activity android:name=".StudentListActivity" />
+        <activity android:name=".GenerateBookListActivity" />
+        <activity android:name=".AddBooksActivity" />
+        <activity android:name=".NewAdminActivity" />
+        <activity android:name=".collegeSignupActivity" />
+        <activity android:name=".login_signupActivity" />
+        <activity android:name=".FineActivity" />
+        <activity android:name=".NewPasswordActivity" />
+        <activity android:name=".ForgetActivity" />
+        <activity android:name=".PhoneActivity" />
+        <activity android:name=".AdminEditActivity" />
+        <activity android:name=".AdminBookControlActivity" />
+        <activity android:name=".ControlActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".AdminAssignActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity
-            android:name="com.deeaboi.smartlib.HomeActivity"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.deeaboi.smartlib.AdminAddNewProductActivity" />
-        <activity android:name="com.deeaboi.smartlib.RegisterActivity" />
-        <activity android:name="com.deeaboi.smartlib.LoginActivity" />
-        <activity android:name="com.deeaboi.smartlib.MainActivity">
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
+        <activity
+            android:name=".AnyOrientationActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3732282418296287~6570981621" />
-
-
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
 </manifest>

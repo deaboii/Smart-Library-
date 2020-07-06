@@ -28,7 +28,7 @@ public class AdminEditActivity extends AppCompatActivity
     private EditText name,author;
     private Button applychangebtn;
     private ImageView image;
-    private String productId="";
+    private String productId="",key="";
     private DatabaseReference editRef;
 
     @Override
@@ -38,8 +38,10 @@ public class AdminEditActivity extends AppCompatActivity
         setContentView(R.layout.activity_admin_edit);
 
         productId=getIntent().getStringExtra("pid");
-        editRef= FirebaseDatabase.getInstance().getReference().child("Products Books").child(productId);
+        key=getIntent().getStringExtra("key");
 
+       // editRef= FirebaseDatabase.getInstance().getReference().child("Products Books").child(productId);
+        editRef= FirebaseDatabase.getInstance().getReference().child("College").child(key).child("Library Books").child(productId);
 
 
         applychangebtn=findViewById(R.id.apply_btn_edit);
@@ -118,7 +120,9 @@ public class AdminEditActivity extends AppCompatActivity
                   {
                       Toast.makeText(AdminEditActivity.this, "Book Upadated Successfully..", Toast.LENGTH_SHORT).show();
 
-                      Intent intent=new Intent(AdminEditActivity.this,AdminCategoryActivity.class);
+                      //Intent intent=new Intent(AdminEditActivity.this,AdminCategoryActivity.class);
+                      Intent intent=new Intent(AdminEditActivity.this,NewAdminActivity.class);
+                      intent.putExtra("key",key);
                       startActivity(intent);
                       finish();
                   }
